@@ -2,7 +2,7 @@ const path=require('path');
 
 const {app, BrowserWindow} = require("electron");
 
-function createWindow(opt, url = "./index.html", debug = false) {
+function createWindow(opt, url = "https://github.com", debug = false) {
     const defaultOpt = {
         useContentSize: false, // 将使用 web 页面的尺寸 默认 (false）
         center: true, // 窗口在屏幕居中 boolean
@@ -33,7 +33,7 @@ function createWindow(opt, url = "./index.html", debug = false) {
     win = new BrowserWindow(options);
 
     // 然后加载应用的 index.html。
-    win.loadFile(url);
+    win.loadURL(url);
 
     if (debug) {
         // 打开开发者工具

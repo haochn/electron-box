@@ -2,8 +2,7 @@
 
 ## 使用
 ``` javascript
-const {eleBox}=require('./lib/box');
-
+const {eleBox}=require('electron-box');
 const electronBox=new eleBox();
-electronBox.ready({},'./src/index.html',true);
+electronBox.ready();
 ```
