@@ -1,13 +1,24 @@
 {
   "name": "electron-box",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "electron ",
   "main": "src/index.js",
-  "scripts": {
-  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/haochn/electron-box"
+    }
+  ],
+  "scripts": {},
   "keywords": [
     "electron"
   ],
-  "author": "haomingyang",
-  "license": "MIT"
+  "author": {
+    "name": "haomingyang",
+    "url": "https://github.com/haochn"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^4.0.0"
+  }
 }

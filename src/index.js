@@ -1,8 +1,6 @@
-const path=require('path');
+const { app, BrowserWindow } = require("electron");
 
-const {app, BrowserWindow} = require("electron");
-
-function createWindow(opt, url = "https://github.com", debug = false) {
+function createWindow(url = "https://github.com", opt, debug = false) {
     const defaultOpt = {
         useContentSize: false, // 将使用 web 页面的尺寸 默认 (false）
         center: true, // 窗口在屏幕居中 boolean
@@ -14,19 +12,19 @@ function createWindow(opt, url = "https://github.com", debug = false) {
         fullscreen: false, // 窗口是否全屏， 默认值 false
         skipTaskbar: false, // 是否在任务栏中显示窗口， 默认值 false
         title: "electron", // 网页标题
-        autoHideMenuBar: true, // 隐藏菜单栏
+        autoHideMenuBar: false, // 隐藏菜单栏
         // icon, // electron图标 (NativeImage | String)
         frame: true, // 窗口边框 默认值 true
-        backgroundColor: "#000000", //窗口背景颜色 默认值 #FFF
+        backgroundColor: "#ffffff", //窗口背景颜色 默认值 #FFF
         webPreferences: {
             webSecurity: true,
             defaultEncoding: "UTF-8", // 字符编码
             allowRunningInsecureContent: true, // 允许一个 https 页面运行 http url 里的资源，包括 JavaScript, CSS 或 plugins， 默认值 false
             plugins: true, // 启用插件
-            nodeIntegration: true //是否完整的支持 node  默认值 true
+            nodeIntegration: false //是否完整的支持 node  默认值 true
         } // 网页功能的设置
     };
-    const options = Object.assign(defaultOpt, {width: 800, height: 600}, opt);
+    const options = Object.assign(defaultOpt, { width: 800, height: 600 }, opt);
 
     let win = null;
     // 创建浏览器窗口。
@@ -42,7 +40,7 @@ function createWindow(opt, url = "https://github.com", debug = false) {
     return win;
 }
 
-const eleBox = function (opt) {
+const eleBox = function () {
     // 当全部窗口关闭时退出。
     app.on('window-all-closed', () => {
         // 否则绝大部分应用及其菜单栏会保持激活。
@@ -50,20 +48,7 @@ const eleBox = function (opt) {
             app.quit();
         }
     });
-    app.on('activate', () => {
-        // 在macOS上，当单击dock图标并且没有其他窗口打开时，
-        // 通常在应用程序中重新创建一个窗口。
-        if (win === null) {
-            let win = createWindow(opt, url, debug);
-            // 当 window 被关闭，这个事件会被触发。
-            win.on('closed', () => {
-                // 取消引用 window 对象，如果你的应用支持多窗口的话，
-                // 通常会把多个 window 对象存放在一个数组里面，
-                // 与此同时，你应该删除相应的元素。
-                win = null;
-            })
-        }
-    })
+   
 };
 
 eleBox.prototype.ready = function (url, opt, debug = false) {
@@ -72,8 +57,7 @@ eleBox.prototype.ready = function (url, opt, debug = false) {
     // 创建浏览器窗口时，调用这个函数。
     // 部分 API 在 ready 事件触发后才能使用。
     app.on('ready', function () {
-        let win = createWindow(opt, url, debug);
-
+        let win = createWindow(url, opt, debug);
         // 监听按键
         const contents = win.webContents;
         contents.on("before-input-event", function (event, input) {
@@ -82,7 +66,7 @@ eleBox.prototype.ready = function (url, opt, debug = false) {
                     case "F12":
                         contents.toggleDevTools(); //切换控制台
                         break;
-                    case  "F5":
+                    case "F5":
                         contents.reload(); //刷新页面
                         break;
                 }
