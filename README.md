@@ -8,7 +8,7 @@ electron的二次封装
 - 源码：[https://github.com/haochn/electron-box](https://github.com/haochn/electron-box) （欢迎 star）
 
 ## 下载
-
+npm
 - 直接下载：[https://github.com/haochn/electron-box/releases](https://github.com/haochn/electron-box/releases)
 - 使用`npm`下载：`npm install electron-box`
 - 使用CDN：[https://unpkg.com/electron-box/release/electron-box.js](https://unpkg.com/electron-box/release/electron-box.js)
@@ -25,7 +25,6 @@ electronBox.ready(); //默认页面内容为github.com
 ```javascript
 // 开启ipc模式
 const {ipcRenderer} = require("electron");
-
 ipcRenderer.on("defaultThing-replay", (event, arg) => {
     //主进程反馈的消息
     console.log(event);
