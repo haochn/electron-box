@@ -14,12 +14,25 @@ electron的二次封装
 - 使用CDN：[https://unpkg.com/electron-box/release/electron-box.js](https://unpkg.com/electron-box/release/electron-box.js)
 
 ## 使用
-
+`主进程`
 ``` javascript
 const {eleBox}=require('electron-box');
 
 const electronBox=new eleBox();
 electronBox.ready(); //默认页面内容为github.com
+```
+`渲染进程`
+```javascript
+// 开启ipc模式
+const {ipcRenderer} = require("electron");
+
+ipcRenderer.on("defaultThing-replay", (event, arg) => {
+    //主进程反馈的消息
+    console.log(event);
+    console.log(arg);
+});
+
+ipcRenderer.send("defaultThing", "defaultMessage");//向主进程发送消息
 ```
 [更多详细>>](https://github.com/haochn/electron-box/wiki)
 ### 提问
