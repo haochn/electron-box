@@ -31,7 +31,6 @@ ipcRenderer.on("defaultThing-replay", (event, arg) => {
     console.log(event);
     console.log(arg);
 });
-
 ipcRenderer.send("defaultThing", "defaultMessage");//向主进程发送消息
 ```
 [更多详细>>](https://github.com/haochn/electron-box/wiki)
