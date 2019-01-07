@@ -5,7 +5,7 @@
 electron的二次封装
 
 - 文档：[https://github.com/haochn/electron-box/README.md](https://github.com/haochn/electron-box/README.md)
-- 源码：[https://github.com/haochn/easy-function](https://github.com/haochn/easy-function) （欢迎 star）
+- 源码：[https://github.com/haochn/electron-box](https://github.com/haochn/electron-box) （欢迎 star）
 
 ## 下载
 
@@ -21,6 +21,7 @@ const {eleBox}=require('electron-box');
 const electronBox=new eleBox();
 electronBox.ready(); //默认页面内容为github.com
 ```
+[更多详细>>](https://github.com/haochn/electron-box/wiki)
 ### 提问
 
 - 直接在 [github issues](https://github.com/haochn/electron-box/issues) 提交问题

@@ -1,6 +1,6 @@
 {
   "name": "electron-box",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "electron ",
   "main": "src/index.js",
   "repositories": [

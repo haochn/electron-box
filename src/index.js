@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require("electron");
 
+const handleIpcThings=require('./lib/handleIpc');
+
 function createWindow(url = "https://github.com", opt, debug = false) {
     const defaultOpt = {
         useContentSize: false, // 将使用 web 页面的尺寸 默认 (false）
@@ -21,10 +23,11 @@ function createWindow(url = "https://github.com", opt, debug = false) {
             defaultEncoding: "UTF-8", // 字符编码
             allowRunningInsecureContent: true, // 允许一个 https 页面运行 http url 里的资源，包括 JavaScript, CSS 或 plugins， 默认值 false
             plugins: true, // 启用插件
-            nodeIntegration: false //是否完整的支持 node  默认值 true
+            nodeIntegration: true, //是否完整的支持 node  默认值 true
+            nodeIntegrationInWorker:false
         } // 网页功能的设置
     };
-    const options = Object.assign(defaultOpt, { width: 800, height: 600 }, opt);
+    const options = Object.assign(defaultOpt, { width: 800, height: 600,ipcSync: false }, opt);
 
     let win = null;
     // 创建浏览器窗口。
@@ -37,8 +40,17 @@ function createWindow(url = "https://github.com", opt, debug = false) {
         // 打开开发者工具
         win.webContents.openDevTools();
     }
+
+    //是否启用IPC通信
+    if(defaultOpt.ipcMode){
+        handleIpcThings(defaultOpt.ipcListener,defaultOpt.ipcSync,debug);
+    }
+
     return win;
 }
+
+
+
 
 const eleBox = function () {
     // 当全部窗口关闭时退出。
@@ -58,6 +70,8 @@ eleBox.prototype.ready = function (url, opt, debug = false) {
     // 部分 API 在 ready 事件触发后才能使用。
     app.on('ready', function () {
         let win = createWindow(url, opt, debug);
+
+
         // 监听按键
         const contents = win.webContents;
         contents.on("before-input-event", function (event, input) {
@@ -85,7 +99,8 @@ eleBox.prototype.ready = function (url, opt, debug = false) {
             // 与此同时，你应该删除相应的元素。
             win = null;
         })
-    })
+    });
+
 };
 
 module.exports = {
