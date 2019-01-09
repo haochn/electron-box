@@ -11,13 +11,12 @@ electron的二次封装
 npm
 - 直接下载：[https://github.com/haochn/electron-box/releases](https://github.com/haochn/electron-box/releases)
 - 使用`npm`下载：`npm install electron-box`
-- 使用CDN：[https://unpkg.com/electron-box/release/electron-box.js](https://unpkg.com/electron-box/release/electron-box.js)
+- 使用CDN：[https://unpkg.com/electron-box/release/index.js](https://unpkg.com/electron-box/release/index.js)
 
 ## 使用
 `主进程`
 ``` javascript
 const {eleBox}=require('electron-box');
-
 const electronBox=new eleBox();
 electronBox.ready(); //默认页面内容为github.com
 ```

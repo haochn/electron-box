@@ -1,15 +1,17 @@
 {
   "name": "electron-box",
-  "version": "0.0.3",
-  "description": "electron ",
-  "main": "src/index.js",
+  "version": "0.0.4",
+  "description": "基于electron的npm，支持ipc通信",
+  "main": "release/index.js",
   "repositories": [
     {
       "type": "git",
       "url": "https://github.com/haochn/electron-box"
     }
   ],
-  "scripts": {},
+  "scripts": {
+    "babel": "babel src -d release"
+  },
   "keywords": [
     "electron"
   ],
@@ -19,6 +21,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "electron": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }

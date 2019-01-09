@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    "babel-plugin-transform-object-assign"
+  ],
+  "minified": true,// 是否压缩代码
+  "comments": false // 是否显示注释
+}
