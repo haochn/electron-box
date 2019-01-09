@@ -19,6 +19,22 @@ npm
 const {eleBox}=require('electron-box');
 const electronBox=new eleBox();
 electronBox.ready(); //默认页面内容为github.com
+
+// 开启ipc模式
+electronBox.ready("https://github.com", {
+    ipcMode:true,
+    ipcListener:[{
+        thing:"defaultThing", // 主进程监听事件名
+        mainCb:(event,arg)=>{ // 主进程监听事件
+            console.log(arg);
+            console.log("mainCb");
+        },
+        renderCb:(event,arg)=>{ // 主进程向渲染进程发送消息的回调
+            console.log("renderCb");
+        }
+    }],
+});
+
 ```
 `渲染进程`
 ```javascript
