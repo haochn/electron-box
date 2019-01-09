@@ -34,5 +34,5 @@ node_modules
 app
 dist
 
-# zip file
+# zip files
 *.zip
