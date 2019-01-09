@@ -71,7 +71,6 @@ eleBox.prototype.ready = function (url, opt, debug = false) {
     app.on('ready', function () {
         let win = createWindow(url, opt, debug);
 
-
         // 监听按键
         const contents = win.webContents;
         contents.on("before-input-event", function (event, input) {
