@@ -16,11 +16,13 @@ npm
 ## 使用
 `主进程`
 ``` javascript
+
 const {eleBox}=require('electron-box');
 const electronBox=new eleBox();
 electronBox.ready(); //默认页面内容为github.com
 
 // 开启ipc模式
+
 electronBox.ready("https://github.com", {
     ipcMode:true,
     ipcListener:[{
@@ -31,14 +33,19 @@ electronBox.ready("https://github.com", {
         },
         renderCb:(event,arg)=>{ // 主进程向渲染进程发送消息的回调
             console.log("renderCb");
+            return "renderCb"
         }
     }],
 });
 
+// 同步返回消息
+// ipcSync:true
 ```
 `渲染进程`
 ```javascript
+
 // 开启ipc模式
+
 const {ipcRenderer} = require("electron");
 ipcRenderer.on("defaultThing-replay", (event, arg) => {
     //主进程反馈的消息
@@ -46,6 +53,10 @@ ipcRenderer.on("defaultThing-replay", (event, arg) => {
     console.log(arg);
 });
 ipcRenderer.send("defaultThing", "defaultMessage");//向主进程发送消息
+// 同步
+
+const receiveMessage=ipcRenderer.send("defaultThing", "defaultMessage");//向主进程发送消息
+console.log(receiveMessage);//接受到的消息
 ```
 [更多详细>>](https://github.com/haochn/electron-box/wiki)
 ### 提问
