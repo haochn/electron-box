@@ -1,7 +1,5 @@
-const {ipcMain} = require("electron");
-
 //ipc模式处理 进程通信 默认异步返回消息。
-const handleIpcThings = (ipcListener = [], sync = true, debug = false) => {
+const handleIpcThings = (ipcListener = [], sync = true, debug = false, ipcMain) => {
     if (ipcListener.length === 0) return;
     ipcListener.forEach((item, i) => {
             ipcMain.on(item.thing, (event, arg) => {
@@ -25,7 +23,6 @@ const handleIpcThings = (ipcListener = [], sync = true, debug = false) => {
 
         }
     )
-
-}
+};
 
 module.exports = handleIpcThings;
